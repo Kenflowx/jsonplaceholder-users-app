@@ -1,12 +1,12 @@
-# Directorio de Usuarios - JSONPlaceholder
+﻿# Directorio de Usuarios - JSONPlaceholder
 
-Aplicación web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pública [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la información de forma dinámica en tarjetas dentro de una página HTML.
+AplicaciÃ³n web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pÃºblica [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la informaciÃ³n de forma dinÃ¡mica en tarjetas dentro de una pÃ¡gina HTML.
 
-## Flujo de la aplicación
+## Flujo de la aplicaciÃ³n
 
 API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento de datos -> DOM -> HTML
 
-## Tecnologías
+## TecnologÃ­as
 
 - TypeScript
 - HTML5
@@ -16,28 +16,28 @@ API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento 
 
 ```text
 jsonplaceholder-users-app/
-├── index.html
-├── css/
-│   └── styles.css
-├── src/
-│   ├── interfaces/
-│   │   └── user.interface.ts
-│   └── main.ts
-├── dist/            (JavaScript compilado)
-├── tsconfig.json
-├── package.json
-└── README.md
+â”œâ”€â”€ index.html
+â”œâ”€â”€ css/
+â”‚   â””â”€â”€ styles.css
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ interfaces/
+â”‚   â”‚   â””â”€â”€ user.interface.ts
+â”‚   â””â”€â”€ main.ts
+â”œâ”€â”€ dist/            (JavaScript compilado)
+â”œâ”€â”€ tsconfig.json
+â”œâ”€â”€ package.json
+â””â”€â”€ README.md
 ```
 
 - `src/interfaces/user.interface.ts`: interfaces `User`, `Address`, `Geo` y `Company` que describen los datos de la API.
 - `src/main.ts`: realiza el `fetch()`, tipa la respuesta como `User[]` y renderiza las tarjetas en el DOM.
-- `dist/`: código JavaScript generado por el compilador de TypeScript.
+- `dist/`: cÃ³digo JavaScript generado por el compilador de TypeScript.
 
-## Cómo ejecutarlo
+## CÃ³mo ejecutarlo
 
 1. Clonar el repositorio:
 ```bash
-   git clone https://github.com/TU_USUARIO/jsonplaceholder-users-app.git
+   git clone https://github.com/Kenflowx/jsonplaceholder-users-app.git
    cd jsonplaceholder-users-app
 ```
 2. Instalar las dependencias:
@@ -54,7 +54,7 @@ jsonplaceholder-users-app/
 ```
 5. Abrir en el navegador la URL que indique (normalmente `http://localhost:3000`).
 
-> Se necesita un servidor local porque los módulos ES no funcionan abriendo `index.html` directamente con doble clic.
+> Se necesita un servidor local porque los mÃ³dulos ES no funcionan abriendo `index.html` directamente con doble clic.
 
 ## Autor
 
