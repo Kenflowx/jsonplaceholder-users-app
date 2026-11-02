@@ -1,8 +1,8 @@
 # Directorio de Usuarios - JSONPlaceholder
 
-AplicaciÃ³n web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pÃºblica [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la informaciÃ³n de forma dinÃ¡mica en tarjetas dentro de una pÃ¡gina HTML.
+Aplicacion web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pubblica [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la informacionn de forma dinamica en tarjetas dentro de una pagina HTML.
 
-## Flujo de la aplicaciÃ³n
+## Flujo de la aplicacion
 
 API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento de datos -> DOM -> HTML
 
@@ -30,7 +30,7 @@ jsonplaceholder-users-app/
 
 - `src/interfaces/user.interface.ts`: interfaces `User`, `Address`, `Geo` y `Company` que describen los datos de la API.
 - `src/main.ts`: realiza el `fetch()`, tipa la respuesta como `User[]` y renderiza las tarjetas en el DOM.
-- `dist/`: cÃ³digo JavaScript generado por el compilador de TypeScript.
+- `dist/`: codigo JavaScript generado por el compilador de TypeScript.
 
 ## CÃ³mo ejecutarlo
 
