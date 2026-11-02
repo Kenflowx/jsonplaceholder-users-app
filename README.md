@@ -59,3 +59,17 @@ jsonplaceholder-users-app/
 ## Autor
 
 Kenovit Garcia - Lr-2024-00841
+
+---
+
+## Proyecto integrador: Login con ASP.NET Core + Vue.js
+
+Autor: Kenovit Garcia - Lr-2024-00841
+
+- `backend/`: ASP.NET Core Web API (C#), SQLite, contraseñas con hash BCrypt, JWT guardado en cookie `HttpOnly`, rutas protegidas con `[Authorize]`.
+- `frontend/`: Vue.js + TypeScript, Vue Router con guard de autenticación y Pinia.
+
+### Ejecutar
+1. Backend: `cd backend` y `dotnet run --no-launch-profile` (http://localhost:5000)
+2. Frontend: `cd frontend`, `npm install` y `npm run dev` (http://localhost:5173)
+3. Usuario de prueba: `kenovit@example.com` / `Admin123*`
