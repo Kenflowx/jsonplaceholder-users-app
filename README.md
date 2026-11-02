@@ -6,7 +6,7 @@ Aplicacion web desarrollada con **TypeScript** que consume el endpoint `/users` 
 
 API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento de datos -> DOM -> HTML
 
-## TecnologÃ­as
+## Tecnologias
 
 - TypeScript
 - HTML5
