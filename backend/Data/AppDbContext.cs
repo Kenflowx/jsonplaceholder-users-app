@@ -14,14 +14,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AppUser>().HasIndex(u => u.Email).IsUnique();
-
         modelBuilder.Entity<Destination>().Property(d => d.PricePerPerson).HasPrecision(10, 2);
-
         modelBuilder.Entity<Reservation>()
             .HasOne<AppUser>().WithMany()
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Cascade);
-
         modelBuilder.Entity<Reservation>()
             .HasOne(r => r.Destination).WithMany()
             .HasForeignKey(r => r.DestinationId)

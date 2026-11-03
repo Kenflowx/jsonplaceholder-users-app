@@ -22,7 +22,6 @@ public class AuthController(AppDbContext db, TokenService tokens) : ControllerBa
             return BadRequest(new { message = "El correo no es válido" });
         if (request.Password.Length < 8)
             return BadRequest(new { message = "La contraseña debe tener al menos 8 caracteres" });
-
         if (await db.Users.AnyAsync(u => u.Email == email))
             return Conflict(new { message = "Ya existe una cuenta con ese correo" });
 
@@ -30,7 +29,6 @@ public class AuthController(AppDbContext db, TokenService tokens) : ControllerBa
         {
             Name = name,
             Email = email,
-            // La contraseña nunca se guarda en texto plano: solo su hash BCrypt
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
         };
 
@@ -52,7 +50,6 @@ public class AuthController(AppDbContext db, TokenService tokens) : ControllerBa
         var expires = DateTime.UtcNow.AddHours(2);
         var token = tokens.Create(user, expires);
 
-        // El JWT va en una cookie HttpOnly: JavaScript no puede leerla
         Response.Cookies.Append(AuthDefaults.CookieName, token, new CookieOptions
         {
             HttpOnly = true,

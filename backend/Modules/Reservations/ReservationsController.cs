@@ -17,7 +17,6 @@ public class ReservationsController(AppDbContext db) : ControllerBase
     public async Task<IActionResult> Mine()
     {
         var userId = CurrentUserId;
-
         var list = await db.Reservations
             .AsNoTracking()
             .Where(r => r.UserId == userId)
@@ -26,7 +25,6 @@ public class ReservationsController(AppDbContext db) : ControllerBase
                 r.Id, r.DestinationId, r.Destination!.Name, r.Destination.Country,
                 r.Travelers, r.TravelDate, r.Travelers * r.Destination.PricePerPerson, r.CreatedAt))
             .ToListAsync();
-
         return Ok(list);
     }
 

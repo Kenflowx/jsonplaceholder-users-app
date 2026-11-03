@@ -1,16 +1,16 @@
 ﻿services:
   db:
     image: postgres:17
-    container_name: agencia-db
+    container_name: kenflow-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: agencia
       POSTGRES_PASSWORD: agencia123
-      POSTGRES_DB: agencia_viajes
+      POSTGRES_DB: kenflow_db
     ports:
       - "5432:5432"
     volumes:
-      - agencia_pgdata:/var/lib/postgresql/data
+      - kenflow_pgdata:/var/lib/postgresql/data
 
 volumes:
-  agencia_pgdata:
+  kenflow_pgdata:

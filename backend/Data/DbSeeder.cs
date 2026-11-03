@@ -26,7 +26,8 @@ public static class DbSeeder
                 new Destination { Name = "Cancún", Country = "México", Description = "Mar turquesa, ruinas mayas y vida nocturna.", PricePerPerson = 720m, DurationDays = 6 },
                 new Destination { Name = "París", Country = "Francia", Description = "Torre Eiffel, museos y gastronomía en la ciudad de la luz.", PricePerPerson = 1650m, DurationDays = 7 },
                 new Destination { Name = "Madrid", Country = "España", Description = "Arte, tapas y vida cultural en el corazón de España.", PricePerPerson = 1400m, DurationDays = 7 },
-                new Destination { Name = "Nueva York", Country = "Estados Unidos", Description = "Times Square, Central Park y Broadway.", PricePerPerson = 1200m, DurationDays = 5 });
+                new Destination { Name = "Nueva York", Country = "Estados Unidos", Description = "Times Square, Central Park y Broadway.", PricePerPerson = 1200m, DurationDays = 5 }
+            );
         }
 
         await db.SaveChangesAsync();

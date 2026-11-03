@@ -7,7 +7,7 @@ namespace Backend.Modules.Auth;
 
 public static class AuthDefaults
 {
-    public const string CookieName = "access_token";
+    public const string CookieName = "kenflow_token";
 }
 
 public class TokenService(IConfiguration config)
@@ -16,7 +16,6 @@ public class TokenService(IConfiguration config)
     {
         var jwt = config.GetSection("Jwt");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!));
-
         var descriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(
@@ -30,7 +29,6 @@ public class TokenService(IConfiguration config)
             Audience = jwt["Audience"],
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
         };
-
         return new JsonWebTokenHandler().CreateToken(descriptor);
     }
 }

@@ -1,5 +1,4 @@
 namespace Backend.Modules.Auth;
-
 public class AppUser
 {
     public int Id { get; set; }

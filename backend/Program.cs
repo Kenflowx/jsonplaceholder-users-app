@@ -13,7 +13,6 @@ builder.Services.AddDbContext<AppDbContext>(o =>
 builder.Services.AddSingleton<TokenService>();
 
 var jwt = builder.Configuration.GetSection("Jwt");
-
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
@@ -31,7 +30,6 @@ builder.Services
             ClockSkew = TimeSpan.Zero
         };
 
-        // Lee el JWT desde la cookie HttpOnly en lugar del header Authorization
         o.Events = new JwtBearerEvents
         {
             OnMessageReceived = ctx =>
@@ -46,7 +44,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Aplica las migraciones pendientes y carga datos iniciales
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -57,5 +54,4 @@ using (var scope = app.Services.CreateScope())
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();
