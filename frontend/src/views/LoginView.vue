@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 const auth = useAuthStore()
 const router = useRouter()
+const route = useRoute()
 
 const email = ref('')
 const password = ref('')
@@ -16,7 +17,7 @@ async function onSubmit() {
   loading.value = true
   try {
     await auth.login(email.value, password.value)
-    await router.push({ name: 'home' })
+    await router.push({ name: 'destinations' })
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Error inesperado'
   } finally {
@@ -27,8 +28,10 @@ async function onSubmit() {
 
 <template>
   <main class="wrapper">
-    <form class="card" @submit.prevent="onSubmit">
+    <form class="card form-card" @submit.prevent="onSubmit">
       <h1>Iniciar sesión</h1>
+
+      <p v-if="route.query.registered" class="success">Cuenta creada. Ya puedes iniciar sesión.</p>
 
       <label>
         Correo
@@ -42,29 +45,11 @@ async function onSubmit() {
 
       <p v-if="error" class="error">{{ error }}</p>
 
-      <button type="submit" :disabled="loading">
+      <button class="btn" type="submit" :disabled="loading">
         {{ loading ? 'Entrando...' : 'Entrar' }}
       </button>
 
-      <small>Proyecto integrador - Kenovit Garcia</small>
+      <small class="muted">¿No tienes cuenta? <RouterLink to="/register">Regístrate</RouterLink></small>
     </form>
   </main>
 </template>
-
-<style scoped>
-.wrapper { min-height: 100vh; display: grid; place-items: center; }
-.card {
-  background: #fff; padding: 2rem; border-radius: 12px; width: 320px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); display: grid; gap: 1rem;
-}
-h1 { margin: 0; font-size: 1.4rem; }
-label { display: grid; gap: 0.3rem; font-size: 0.9rem; }
-input { padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 8px; }
-button {
-  padding: 0.7rem; border: 0; border-radius: 8px; background: #6366f1;
-  color: #fff; cursor: pointer; font-size: 1rem;
-}
-button:disabled { opacity: 0.6; cursor: wait; }
-.error { color: #dc2626; margin: 0; font-size: 0.9rem; }
-small { color: #64748b; text-align: center; }
-</style>

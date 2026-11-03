@@ -5,3 +5,10 @@ obj/
 *.db
 frontend/node_modules/
 frontend/dist/
+
+bin/
+obj/
+.vs/
+*.db
+frontend/node_modules/
+frontend/dist/

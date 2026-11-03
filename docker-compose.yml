@@ -1,0 +1,16 @@
+﻿services:
+  db:
+    image: postgres:17
+    container_name: agencia-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: agencia
+      POSTGRES_PASSWORD: agencia123
+      POSTGRES_DB: agencia_viajes
+    ports:
+      - "5432:5432"
+    volumes:
+      - agencia_pgdata:/var/lib/postgresql/data
+
+volumes:
+  agencia_pgdata:

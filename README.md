@@ -1,12 +1,12 @@
-# Directorio de Usuarios - JSONPlaceholder
+﻿# Directorio de Usuarios - JSONPlaceholder
 
-Aplicacion web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pubblica [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la informacionn de forma dinamica en tarjetas dentro de una pagina HTML.
+AplicaciÃ³n web desarrollada con **TypeScript** que consume el endpoint `/users` de la API pÃºblica [JSONPlaceholder](https://jsonplaceholder.typicode.com/) mediante `fetch()` y muestra la informaciÃ³n de forma dinÃ¡mica en tarjetas dentro de una pÃ¡gina HTML.
 
-## Flujo de la aplicacion
+## Flujo de la aplicaciÃ³n
 
 API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento de datos -> DOM -> HTML
 
-## Tecnologias
+## TecnologÃ­as
 
 - TypeScript
 - HTML5
@@ -14,23 +14,24 @@ API REST -> fetch() -> Respuesta JSON -> Interfaces TypeScript -> Procesamiento 
 
 ## Estructura del proyecto
 
+```text
 jsonplaceholder-users-app/
-├── index.html
-├── css/
-│   └── styles.css
-├── src/
-│   ├── interfaces/
-│   │   └── user.interface.ts
-│   └── main.ts
-├── dist/           (JavaScript compilado)
-├── tsconfig.json
-├── package.json
-└── README.md
+â”œâ”€â”€ index.html
+â”œâ”€â”€ css/
+â”‚   â””â”€â”€ styles.css
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ interfaces/
+â”‚   â”‚   â””â”€â”€ user.interface.ts
+â”‚   â””â”€â”€ main.ts
+â”œâ”€â”€ dist/            (JavaScript compilado)
+â”œâ”€â”€ tsconfig.json
+â”œâ”€â”€ package.json
+â””â”€â”€ README.md
 ```
 
 - `src/interfaces/user.interface.ts`: interfaces `User`, `Address`, `Geo` y `Company` que describen los datos de la API.
 - `src/main.ts`: realiza el `fetch()`, tipa la respuesta como `User[]` y renderiza las tarjetas en el DOM.
-- `dist/`: codigo JavaScript generado por el compilador de TypeScript.
+- `dist/`: cÃ³digo JavaScript generado por el compilador de TypeScript.
 
 ## CÃ³mo ejecutarlo
 
@@ -61,14 +62,25 @@ Kenovit Garcia - Lr-2024-00841
 
 ---
 
-## Proyecto integrador: Login con ASP.NET Core + Vue.js
+## Proyecto integrador: Agencia de Viajes (ASP.NET Core + Vue.js)
 
 Autor: Kenovit Garcia - Lr-2024-00841
 
-- `backend/`: ASP.NET Core Web API (C#), SQLite, contraseñas con hash BCrypt, JWT guardado en cookie `HttpOnly`, rutas protegidas con `[Authorize]`.
-- `frontend/`: Vue.js + TypeScript, Vue Router con guard de autenticación y Pinia.
+Aplicación web de una agencia de viajes con login seguro, catálogo de destinos y reservas.
 
-### Ejecutar
-1. Backend: `cd backend` y `dotnet run --no-launch-profile` (http://localhost:5000)
-2. Frontend: `cd frontend`, `npm install` y `npm run dev` (http://localhost:5173)
-3. Usuario de prueba: `kenovit@example.com` /
+### Tecnologías
+- **Backend** (`backend/`): ASP.NET Core Web API (C#), Entity Framework Core con migraciones, PostgreSQL, contraseñas con hash BCrypt, JWT guardado en cookie `HttpOnly` y rutas protegidas con `[Authorize]`.
+- **Frontend** (`frontend/`): Vue.js + TypeScript, Vue Router con guard de autenticación y Pinia.
+- **Base de datos**: PostgreSQL en un contenedor Docker (`docker-compose.yml`).
+
+### Módulos del backend
+- `Modules/Auth`: registro, login, logout y usuario actual.
+- `Modules/Destinations`: listado, detalle y creación de destinos.
+- `Modules/Reservations`: crear, listar y cancelar reservas del usuario.
+
+### Cómo ejecutarlo
+1. Base de datos: `docker compose up -d`
+2. Migraciones: `cd backend`, `dotnet tool update --global dotnet-ef`, `dotnet ef database update`
+3. Backend: `dotnet run --no-launch-profile` (http://localhost:5000)
+4. Frontend: `cd frontend`, `npm install`, `npm run dev` (http://localhost:5173)
+5. Usuario de prueba: `kenovit@example.com` / `Admin123*`

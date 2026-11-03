@@ -1,6 +1,6 @@
 using System.Text;
 using Backend.Data;
-using Backend.Models;
+using Backend.Modules.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+    o.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddSingleton<TokenService>();
 
 var jwt = builder.Configuration.GetSection("Jwt");
 
@@ -35,7 +36,7 @@ builder.Services
         {
             OnMessageReceived = ctx =>
             {
-                ctx.Token = ctx.Request.Cookies["access_token"];
+                ctx.Token = ctx.Request.Cookies[AuthDefaults.CookieName];
                 return Task.CompletedTask;
             }
         };
@@ -45,22 +46,12 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Crea la base de datos y un usuario de prueba (solo desarrollo)
+// Aplica las migraciones pendientes y carga datos iniciales
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
-
-    if (!db.Users.Any())
-    {
-        db.Users.Add(new User
-        {
-            Name = "Kenovit Garcia",
-            Email = "kenovit@example.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123*")
-        });
-        db.SaveChanges();
-    }
+    await db.Database.MigrateAsync();
+    await DbSeeder.SeedAsync(db);
 }
 
 app.UseAuthentication();

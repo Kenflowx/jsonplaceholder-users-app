@@ -6,14 +6,27 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('@/views/HomeView.vue'),
+      name: 'destinations',
+      component: () => import('@/views/DestinationsView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/reservations',
+      name: 'reservations',
+      component: () => import('@/views/ReservationsView.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/views/LoginView.vue'),
+      meta: { guestOnly: true },
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/RegisterView.vue'),
+      meta: { guestOnly: true },
     },
   ],
 })
@@ -24,7 +37,7 @@ router.beforeEach(async (to) => {
   await auth.loadSession()
 
   if (to.meta.requiresAuth && !auth.isAuthenticated) return { name: 'login' }
-  if (to.name === 'login' && auth.isAuthenticated) return { name: 'home' }
+  if (to.meta.guestOnly && auth.isAuthenticated) return { name: 'destinations' }
 })
 
 export default router
