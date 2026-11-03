@@ -31,11 +31,9 @@ const router = createRouter({
   ],
 })
 
-// Protección de rutas
 router.beforeEach(async (to) => {
   const auth = useAuthStore()
   await auth.loadSession()
-
   if (to.meta.requiresAuth && !auth.isAuthenticated) return { name: 'login' }
   if (to.meta.guestOnly && auth.isAuthenticated) return { name: 'destinations' }
 })

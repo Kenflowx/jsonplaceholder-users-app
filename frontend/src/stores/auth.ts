@@ -7,7 +7,6 @@ export const useAuthStore = defineStore('auth', () => {
   const ready = ref(false)
   const isAuthenticated = computed(() => user.value !== null)
 
-  // Pregunta al backend si la cookie actual es válida (una sola vez al cargar)
   async function loadSession() {
     if (ready.value) return
     try {

@@ -29,26 +29,20 @@ async function onSubmit() {
 <template>
   <main class="wrapper">
     <form class="card form-card" @submit.prevent="onSubmit">
-      <h1>Iniciar sesión</h1>
-
-      <p v-if="route.query.registered" class="success">Cuenta creada. Ya puedes iniciar sesión.</p>
-
+      <h1>Kenflow - Entrar</h1>
+      <p v-if="route.query.registered" class="success">Cuenta creada con éxito.</p>
       <label>
         Correo
         <input v-model="email" type="email" required autocomplete="username" />
       </label>
-
       <label>
         Contraseña
         <input v-model="password" type="password" required autocomplete="current-password" />
       </label>
-
       <p v-if="error" class="error">{{ error }}</p>
-
       <button class="btn" type="submit" :disabled="loading">
-        {{ loading ? 'Entrando...' : 'Entrar' }}
+        {{ loading ? 'Entrando...' : 'Iniciar Sesión' }}
       </button>
-
       <small class="muted">¿No tienes cuenta? <RouterLink to="/register">Regístrate</RouterLink></small>
     </form>
   </main>

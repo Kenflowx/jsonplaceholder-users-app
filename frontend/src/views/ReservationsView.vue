@@ -5,7 +5,6 @@ import { cancelReservation, getMyReservations, type ReservationDto } from '@/api
 const reservations = ref<ReservationDto[]>([])
 const loading = ref(true)
 const error = ref('')
-
 const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
 
 onMounted(async () => {
@@ -31,12 +30,10 @@ async function cancel(id: number) {
 
 <template>
   <main class="container">
-    <h1>Mis reservas</h1>
-
-    <p v-if="loading" class="muted">Cargando...</p>
+    <h1>Mis Reservas en Kenflow</h1>
+    <p v-if="loading" class="muted">Cargando reservas...</p>
     <p v-if="error" class="error">{{ error }}</p>
-    <p v-if="!loading && reservations.length === 0" class="muted">Aún no tienes reservas.</p>
-
+    <p v-if="!loading && reservations.length === 0" class="muted">Aún no tienes reservas registradas.</p>
     <section class="grid">
       <article v-for="r in reservations" :key="r.id" class="card">
         <h2>{{ r.destinationName }}</h2>

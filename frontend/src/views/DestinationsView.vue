@@ -7,12 +7,10 @@ const destinations = ref<DestinationDto[]>([])
 const loading = ref(true)
 const error = ref('')
 const message = ref('')
-
 const selectedId = ref<number | null>(null)
 const travelers = ref(1)
 const travelDate = ref('')
 const today = new Date().toISOString().slice(0, 10)
-
 const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
 
 onMounted(async () => {
@@ -43,7 +41,7 @@ async function reserve() {
       travelers: travelers.value,
       travelDate: travelDate.value,
     })
-    message.value = `Reserva creada para ${result.destinationName}. Total: ${money.format(result.total)}`
+    message.value = `¡Reserva exitosa para ${result.destinationName}! Total: ${money.format(result.total)}`
     selectedId.value = null
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'No se pudo crear la reserva'
@@ -53,21 +51,17 @@ async function reserve() {
 
 <template>
   <main class="container">
-    <h1>Destinos disponibles</h1>
-
-    <p v-if="loading" class="muted">Cargando...</p>
+    <h1>Destinos Kenflow</h1>
+    <p v-if="loading" class="muted">Cargando destinos...</p>
     <p v-if="error" class="error">{{ error }}</p>
     <p v-if="message" class="success">{{ message }}</p>
-
     <section class="grid">
       <article v-for="d in destinations" :key="d.id" class="card">
         <h2>{{ d.name }}</h2>
         <p class="muted">{{ d.country }} - {{ d.durationDays }} días</p>
         <p>{{ d.description }}</p>
         <p><strong>{{ money.format(d.pricePerPerson) }}</strong> por persona</p>
-
         <button v-if="selectedId !== d.id" class="btn" @click="openForm(d.id)">Reservar</button>
-
         <form v-else class="reserve-form" @submit.prevent="reserve">
           <label>
             Viajeros

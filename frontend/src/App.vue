@@ -13,7 +13,7 @@ async function onLogout() {
 
 <template>
   <header v-if="auth.isAuthenticated" class="nav">
-    <strong>Agencia de Viajes</strong>
+    <strong>Agencia de Viajes Kenflow</strong>
     <nav>
       <RouterLink to="/">Destinos</RouterLink>
       <RouterLink to="/reservations">Mis reservas</RouterLink>
@@ -21,17 +21,12 @@ async function onLogout() {
     <span class="muted">{{ auth.user?.name }}</span>
     <button class="btn btn-secondary" @click="onLogout">Salir</button>
   </header>
-
   <RouterView />
-
-  <footer class="footer">Proyecto integrador - Kenovit Garcia - Lr-2024-00841</footer>
+  <footer class="footer">Proyecto integrador Kenflow - Kenovit Garcia - Lr-2024-00841</footer>
 </template>
 
 <style scoped>
-.nav {
-  display: flex; align-items: center; gap: 1.2rem; padding: 0.8rem 1.5rem;
-  background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
+.nav { display: flex; align-items: center; gap: 1.2rem; padding: 0.8rem 1.5rem; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); }
 .nav nav { display: flex; gap: 1rem; flex: 1; }
 .nav a { color: #0ea5e9; text-decoration: none; }
 .nav a.router-link-exact-active { font-weight: bold; }
